@@ -6,10 +6,12 @@ use App\Repositories\Contracts\PaymentRepositoryInterface;
 use App\Repositories\Contracts\StatisticsRepositoryInterface;
 use App\Repositories\Contracts\UserAccountRepository;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\WithdrawalRepositoryInterface;
 use App\Repositories\Payment\EloquentPaymentRepository;
 use App\Repositories\Statistic\EloquentStatisticsRepository;
 use App\Repositories\Users\EloquentUserAccountRepository;
 use App\Repositories\Users\EloquentUserRepositoryInterface;
+use App\Repositories\Withdrawal\EloquentWithdrawalRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -26,6 +28,9 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind(UserAccountRepository::class,
             EloquentUserAccountRepository::class);
+
+        $this->app->bind(WithdrawalRepositoryInterface::class,
+            EloquentWithdrawalRepositoryInterface::class);
 
         $this->app->bind(PaymentRepositoryInterface::class,EloquentPaymentRepository::class);
         $this->app->bind(StatisticsRepositoryInterface::class,EloquentStatisticsRepository::class);
